@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "indexName": {
+            "required": true,
+            "type": "string"
+        },
+        "client_request_id": {
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "If_None_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

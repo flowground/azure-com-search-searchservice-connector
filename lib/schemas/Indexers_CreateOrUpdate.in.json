@@ -1,0 +1,236 @@
+{
+    "type": "object",
+    "properties": {
+        "indexerName": {
+            "required": true,
+            "type": "string"
+        },
+        "Prefer": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "return=representation"
+            ]
+        },
+        "requestBody": {
+            "description": "Represents an Azure Search indexer.",
+            "externalDocs": {
+                "url": "https://docs.microsoft.com/rest/api/searchservice/Indexer-operations"
+            },
+            "properties": {
+                "dataSourceName": {
+                    "description": "The name of the datasource from which this indexer reads data.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "The description of the indexer.",
+                    "type": "string"
+                },
+                "disabled": {
+                    "default": false,
+                    "description": "A value indicating whether the indexer is disabled. Default is false.",
+                    "type": "boolean",
+                    "x-ms-client-name": "IsDisabled"
+                },
+                "fieldMappings": {
+                    "description": "Defines mappings between fields in the data source and corresponding target fields in the index.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/azure/search/search-indexer-field-mappings"
+                    },
+                    "items": {
+                        "description": "Defines a mapping between a field in a data source and a target field in an index.",
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/azure/search/search-indexer-field-mappings"
+                        },
+                        "properties": {
+                            "mappingFunction": {
+                                "description": "A function to apply to each source field value before indexing.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/azure/search/search-indexer-field-mappings"
+                                },
+                                "properties": {
+                                    "name": {
+                                        "description": "The name of the field mapping function.",
+                                        "type": "string"
+                                    },
+                                    "parameters": {
+                                        "additionalProperties": {
+                                            "type": "object"
+                                        },
+                                        "description": "A dictionary of parameter name/value pairs to pass to the function. Each value must be of a primitive type.",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ],
+                                "type": "object"
+                            },
+                            "sourceFieldName": {
+                                "description": "The name of the field in the data source.",
+                                "type": "string"
+                            },
+                            "targetFieldName": {
+                                "description": "The name of the target field in the index. Same as the source field name by default.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "sourceFieldName"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "The name of the indexer.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Naming-rules"
+                    },
+                    "type": "string"
+                },
+                "outputFieldMappings": {
+                    "description": "Output field mappings are applied after enrichment and immediately before indexing.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/azure/search/search-indexer-field-mappings"
+                    },
+                    "items": {
+                        "description": "Defines a mapping between a field in a data source and a target field in an index.",
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/azure/search/search-indexer-field-mappings"
+                        },
+                        "properties": {
+                            "mappingFunction": {
+                                "description": "A function to apply to each source field value before indexing.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/azure/search/search-indexer-field-mappings"
+                                },
+                                "properties": {
+                                    "name": {
+                                        "description": "The name of the field mapping function.",
+                                        "type": "string"
+                                    },
+                                    "parameters": {
+                                        "additionalProperties": {
+                                            "type": "object"
+                                        },
+                                        "description": "A dictionary of parameter name/value pairs to pass to the function. Each value must be of a primitive type.",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ],
+                                "type": "object"
+                            },
+                            "sourceFieldName": {
+                                "description": "The name of the field in the data source.",
+                                "type": "string"
+                            },
+                            "targetFieldName": {
+                                "description": "The name of the target field in the index. Same as the source field name by default.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "sourceFieldName"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "parameters": {
+                    "description": "Parameters for indexer execution.",
+                    "properties": {
+                        "base64EncodeKeys": {
+                            "default": false,
+                            "description": "Whether indexer will base64-encode all values that are inserted into key field of the target index. This is needed if keys can contain characters that are invalid in keys (such as dot '.'). Default is false.",
+                            "type": "boolean"
+                        },
+                        "batchSize": {
+                            "description": "The number of items that are read from the data source and indexed as a single batch in order to improve performance. The default depends on the data source type.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "configuration": {
+                            "additionalProperties": {
+                                "type": "object"
+                            },
+                            "description": "A dictionary of indexer-specific configuration properties. Each name is the name of a specific property. Each value must be of a primitive type.",
+                            "type": "object"
+                        },
+                        "maxFailedItems": {
+                            "default": 0,
+                            "description": "The maximum number of items that can fail indexing for indexer execution to still be considered successful. -1 means no limit. Default is 0.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "maxFailedItemsPerBatch": {
+                            "default": 0,
+                            "description": "The maximum number of items in a single batch that can fail indexing for the batch to still be considered successful. -1 means no limit. Default is 0.",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "x-ms-external": true,
+                    "type": "object"
+                },
+                "schedule": {
+                    "description": "The schedule for this indexer.",
+                    "properties": {
+                        "interval": {
+                            "description": "The interval of time between indexer executions.",
+                            "format": "duration",
+                            "type": "string"
+                        },
+                        "startTime": {
+                            "description": "The time when an indexer should start running.",
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "interval"
+                    ],
+                    "type": "object"
+                },
+                "skillsetName": {
+                    "description": "The name of the cognitive skillset executing with this indexer.",
+                    "type": "string"
+                },
+                "targetIndexName": {
+                    "description": "The name of the index to which this indexer writes data.",
+                    "type": "string"
+                },
+                "_odata_etag": {
+                    "description": "The ETag of the Indexer.",
+                    "type": "string",
+                    "x-ms-client-name": "ETag"
+                }
+            },
+            "required": [
+                "name",
+                "dataSourceName",
+                "targetIndexName"
+            ],
+            "type": "object"
+        },
+        "client_request_id": {
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "If_None_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

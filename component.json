@@ -1,0 +1,562 @@
+{
+    "title": "SearchServiceClient",
+    "description": "Client that can be used to manage and query indexes and documents, as well as manage other resources, on an Azure Search service.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/search-searchservice/2017-11-11-Preview/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://azure.local/",
+                    "https://{searchServiceName}.{searchDnsSuffix}",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "DataSources_List": {
+            "main": "./lib/actions/DataSources_List.js",
+            "title": "Lists all datasources available for an Azure Search service.",
+            "description": "Lists all datasources available for an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DataSources_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DataSources_Create": {
+            "main": "./lib/actions/DataSources_Create.js",
+            "title": "Creates a new Azure Search datasource.",
+            "description": "Creates a new Azure Search datasource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DataSources_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DataSources_Delete": {
+            "main": "./lib/actions/DataSources_Delete.js",
+            "title": "Deletes an Azure Search datasource.",
+            "description": "Deletes an Azure Search datasource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DataSources_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DataSources_Get": {
+            "main": "./lib/actions/DataSources_Get.js",
+            "title": "Retrieves a datasource definition from Azure Search.",
+            "description": "Retrieves a datasource definition from Azure Search.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DataSources_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DataSources_CreateOrUpdate": {
+            "main": "./lib/actions/DataSources_CreateOrUpdate.js",
+            "title": "Creates a new Azure Search datasource or updates a datasource if it already exists.",
+            "description": "Creates a new Azure Search datasource or updates a datasource if it already exists.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DataSources_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexers_List": {
+            "main": "./lib/actions/Indexers_List.js",
+            "title": "Lists all indexers available for an Azure Search service.",
+            "description": "Lists all indexers available for an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexers_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexers_Create": {
+            "main": "./lib/actions/Indexers_Create.js",
+            "title": "Creates a new Azure Search indexer.",
+            "description": "Creates a new Azure Search indexer.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexers_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexers_Delete": {
+            "main": "./lib/actions/Indexers_Delete.js",
+            "title": "Deletes an Azure Search indexer.",
+            "description": "Deletes an Azure Search indexer.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexers_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexers_Get": {
+            "main": "./lib/actions/Indexers_Get.js",
+            "title": "Retrieves an indexer definition from Azure Search.",
+            "description": "Retrieves an indexer definition from Azure Search.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexers_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexers_CreateOrUpdate": {
+            "main": "./lib/actions/Indexers_CreateOrUpdate.js",
+            "title": "Creates a new Azure Search indexer or updates an indexer if it already exists.",
+            "description": "Creates a new Azure Search indexer or updates an indexer if it already exists.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexers_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexers_Reset": {
+            "main": "./lib/actions/Indexers_Reset.js",
+            "title": "Resets the change tracking state associated with an Azure Search indexer.",
+            "description": "Resets the change tracking state associated with an Azure Search indexer.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexers_Reset.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexers_Run": {
+            "main": "./lib/actions/Indexers_Run.js",
+            "title": "Runs an Azure Search indexer on-demand.",
+            "description": "Runs an Azure Search indexer on-demand.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexers_Run.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexers_GetStatus": {
+            "main": "./lib/actions/Indexers_GetStatus.js",
+            "title": "Returns the current status and execution history of an indexer.",
+            "description": "Returns the current status and execution history of an indexer.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexers_GetStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexes_List": {
+            "main": "./lib/actions/Indexes_List.js",
+            "title": "Lists all indexes available for an Azure Search service.",
+            "description": "Lists all indexes available for an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexes_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexes_Create": {
+            "main": "./lib/actions/Indexes_Create.js",
+            "title": "Creates a new Azure Search index.",
+            "description": "Creates a new Azure Search index.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexes_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexes_Delete": {
+            "main": "./lib/actions/Indexes_Delete.js",
+            "title": "Deletes an Azure Search index and all the documents it contains.",
+            "description": "Deletes an Azure Search index and all the documents it contains.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexes_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexes_Get": {
+            "main": "./lib/actions/Indexes_Get.js",
+            "title": "Retrieves an index definition from Azure Search.",
+            "description": "Retrieves an index definition from Azure Search.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexes_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexes_CreateOrUpdate": {
+            "main": "./lib/actions/Indexes_CreateOrUpdate.js",
+            "title": "Creates a new Azure Search index or updates an index if it already exists.",
+            "description": "Creates a new Azure Search index or updates an index if it already exists.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexes_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexes_Analyze": {
+            "main": "./lib/actions/Indexes_Analyze.js",
+            "title": "Shows how an analyzer breaks text into tokens.",
+            "description": "Shows how an analyzer breaks text into tokens.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexes_Analyze.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Indexes_GetStatistics": {
+            "main": "./lib/actions/Indexes_GetStatistics.js",
+            "title": "Returns statistics for the given index, including a document count and storage usage.",
+            "description": "Returns statistics for the given index, including a document count and storage usage.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Indexes_GetStatistics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetServiceStatistics": {
+            "main": "./lib/actions/GetServiceStatistics.js",
+            "title": "Gets service level statistics for an Azure Search service.",
+            "description": "Gets service level statistics for an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetServiceStatistics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Skillsets_List": {
+            "main": "./lib/actions/Skillsets_List.js",
+            "title": "List all cognitive skillsets in an Azure Search service.",
+            "description": "List all cognitive skillsets in an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Skillsets_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Skillsets_Create": {
+            "main": "./lib/actions/Skillsets_Create.js",
+            "title": "Creates a new cognitive skillset in an Azure Search service.",
+            "description": "Creates a new cognitive skillset in an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Skillsets_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Skillsets_Delete": {
+            "main": "./lib/actions/Skillsets_Delete.js",
+            "title": "Deletes a cognitive skillset in an Azure Search service.",
+            "description": "Deletes a cognitive skillset in an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Skillsets_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Skillsets_Get": {
+            "main": "./lib/actions/Skillsets_Get.js",
+            "title": "Retrieves a cognitive skillset in an Azure Search service.",
+            "description": "Retrieves a cognitive skillset in an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Skillsets_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Skillsets_CreateOrUpdate": {
+            "main": "./lib/actions/Skillsets_CreateOrUpdate.js",
+            "title": "Creates a new cognitive skillset in an Azure Search service or updates the skillset if it already exists.",
+            "description": "Creates a new cognitive skillset in an Azure Search service or updates the skillset if it already exists.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Skillsets_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SynonymMaps_List": {
+            "main": "./lib/actions/SynonymMaps_List.js",
+            "title": "Lists all synonym maps available for an Azure Search service.",
+            "description": "Lists all synonym maps available for an Azure Search service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SynonymMaps_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SynonymMaps_Create": {
+            "main": "./lib/actions/SynonymMaps_Create.js",
+            "title": "Creates a new Azure Search synonym map.",
+            "description": "Creates a new Azure Search synonym map.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SynonymMaps_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SynonymMaps_Delete": {
+            "main": "./lib/actions/SynonymMaps_Delete.js",
+            "title": "Deletes an Azure Search synonym map.",
+            "description": "Deletes an Azure Search synonym map.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SynonymMaps_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SynonymMaps_Get": {
+            "main": "./lib/actions/SynonymMaps_Get.js",
+            "title": "Retrieves a synonym map definition from Azure Search.",
+            "description": "Retrieves a synonym map definition from Azure Search.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SynonymMaps_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SynonymMaps_CreateOrUpdate": {
+            "main": "./lib/actions/SynonymMaps_CreateOrUpdate.js",
+            "title": "Creates a new Azure Search synonym map or updates a synonym map if it already exists.",
+            "description": "Creates a new Azure Search synonym map or updates a synonym map if it already exists.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SynonymMaps_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

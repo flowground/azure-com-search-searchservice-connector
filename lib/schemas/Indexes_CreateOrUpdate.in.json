@@ -1,0 +1,476 @@
+{
+    "type": "object",
+    "properties": {
+        "indexName": {
+            "required": true,
+            "type": "string"
+        },
+        "allowIndexDowntime": {
+            "required": false,
+            "type": "boolean"
+        },
+        "Prefer": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "return=representation"
+            ]
+        },
+        "requestBody": {
+            "description": "Represents an index definition in Azure Search, which describes the fields and search behavior of an index.",
+            "properties": {
+                "analyzers": {
+                    "description": "The analyzers for the index.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                    },
+                    "items": {
+                        "description": "Abstract base class for analyzers.",
+                        "discriminator": {
+                            "propertyName": "@odata.type"
+                        },
+                        "properties": {
+                            "@odata.type": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "The name of the analyzer. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search#index-attribute-reference"
+                                },
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "@odata.type",
+                            "name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "charFilters": {
+                    "description": "The character filters for the index.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                    },
+                    "items": {
+                        "description": "Abstract base class for character filters.",
+                        "discriminator": {
+                            "propertyName": "@odata.type"
+                        },
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                        },
+                        "properties": {
+                            "@odata.type": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "The name of the char filter. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search#index-attribute-reference"
+                                },
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "@odata.type",
+                            "name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "corsOptions": {
+                    "description": "Options to control Cross-Origin Resource Sharing (CORS) for the index.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Create-Index"
+                    },
+                    "properties": {
+                        "allowedOrigins": {
+                            "description": "The list of origins from which JavaScript code will be granted access to your index. Can contain a list of hosts of the form {protocol}://{fully-qualified-domain-name}[:{port#}], or a single '*' to allow all origins (not recommended).",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "maxAgeInSeconds": {
+                            "description": "The duration for which browsers should cache CORS preflight responses. Defaults to 5 minutes.",
+                            "format": "int64",
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "allowedOrigins"
+                    ],
+                    "type": "object"
+                },
+                "defaultScoringProfile": {
+                    "description": "The name of the scoring profile to use if none is specified in the query. If this property is not set and no scoring profile is specified in the query, then default scoring (tf-idf) will be used.",
+                    "type": "string"
+                },
+                "fields": {
+                    "description": "The fields of the index.",
+                    "items": {
+                        "description": "Represents a field in an index definition in Azure Search, which describes the name, data type, and search behavior of a field.",
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/rest/api/searchservice/Create-Index"
+                        },
+                        "properties": {
+                            "analyzer": {
+                                "description": "The name of the analyzer to use for the field at search time and indexing time. This option can be used only with searchable fields and it can't be set together with either searchAnalyzer or indexAnalyzer. Once the analyzer is chosen, it cannot be changed for the field.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/Language-support"
+                                },
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "x-ms-external": true,
+                                "type": "object"
+                            },
+                            "facetable": {
+                                "description": "A value indicating whether it is possible to facet on this field. Not valid for geo-point fields. Default is false.",
+                                "type": "boolean",
+                                "x-ms-client-name": "isFacetable",
+                                "nullable": false
+                            },
+                            "filterable": {
+                                "description": "A value indicating whether the field can be used in filter expressions. Default is false.",
+                                "type": "boolean",
+                                "x-ms-client-name": "isFilterable",
+                                "nullable": false
+                            },
+                            "indexAnalyzer": {
+                                "description": "The name of the analyzer used at indexing time for the field. This option can be used only with searchable fields. It must be set together with searchAnalyzer and it cannot be set together with the analyzer option. Once the analyzer is chosen, it cannot be changed for the field.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/Language-support"
+                                },
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "x-ms-external": true,
+                                "type": "object"
+                            },
+                            "key": {
+                                "description": "A value indicating whether the field is the key of the index. Valid only for string fields. Every index must have exactly one key field.",
+                                "type": "boolean",
+                                "x-ms-client-name": "isKey",
+                                "nullable": false
+                            },
+                            "name": {
+                                "description": "The name of the field.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/Naming-rules"
+                                },
+                                "type": "string"
+                            },
+                            "retrievable": {
+                                "default": true,
+                                "description": "A value indicating whether the field can be returned in a search result. Default is true.",
+                                "type": "boolean",
+                                "x-ms-client-name": "isRetrievable",
+                                "nullable": false
+                            },
+                            "searchAnalyzer": {
+                                "description": "The name of the analyzer used at search time for the field. This option can be used only with searchable fields. It must be set together with indexAnalyzer and it cannot be set together with the analyzer option. This analyzer can be updated on an existing field.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/Language-support"
+                                },
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "x-ms-external": true,
+                                "type": "object"
+                            },
+                            "searchable": {
+                                "description": "A value indicating whether the field is included in full-text searches. Valid only for string or string collection fields. Default is false.",
+                                "type": "boolean",
+                                "x-ms-client-name": "isSearchable",
+                                "nullable": false
+                            },
+                            "sortable": {
+                                "description": "A value indicating whether the field can be used in orderby expressions. Not valid for string collection fields. Default is false.",
+                                "type": "boolean",
+                                "x-ms-client-name": "isSortable",
+                                "nullable": false
+                            },
+                            "synonymMaps": {
+                                "description": "A list of synonym maps to apply in query expansion. Only one synonym map is allowed in the list currently. Synonym maps must be uploaded first to be referenced. This option can be used only with searchable fields.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/Synonym-Map-operations"
+                                },
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "type": {
+                                "description": "The data type of the field.",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "x-ms-external": true,
+                                "type": "object"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "type"
+                        ],
+                        "x-ms-external": true,
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "The name of the index.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Naming-rules"
+                    },
+                    "type": "string"
+                },
+                "scoringProfiles": {
+                    "description": "The scoring profiles for the index.",
+                    "items": {
+                        "description": "Defines parameters for an Azure Search index that influence scoring in search queries.",
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/rest/api/searchservice/Add-scoring-profiles-to-a-search-index"
+                        },
+                        "properties": {
+                            "functionAggregation": {
+                                "description": "A value indicating how the results of individual scoring functions should be combined. Defaults to \"Sum\". Ignored if there are no scoring functions.",
+                                "enum": [
+                                    "sum",
+                                    "average",
+                                    "minimum",
+                                    "maximum",
+                                    "firstMatching"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "name": "ScoringFunctionAggregation"
+                                }
+                            },
+                            "functions": {
+                                "description": "The collection of functions that influence the scoring of documents.",
+                                "items": {
+                                    "description": "Abstract base class for functions that can modify document scores during ranking.",
+                                    "discriminator": {
+                                        "propertyName": "type"
+                                    },
+                                    "externalDocs": {
+                                        "url": "https://docs.microsoft.com/rest/api/searchservice/Add-scoring-profiles-to-a-search-index"
+                                    },
+                                    "properties": {
+                                        "boost": {
+                                            "description": "A multiplier for the raw score. Must be a positive number not equal to 1.0.",
+                                            "format": "double",
+                                            "type": "number"
+                                        },
+                                        "fieldName": {
+                                            "description": "The name of the field used as input to the scoring function.",
+                                            "type": "string"
+                                        },
+                                        "interpolation": {
+                                            "description": "A value indicating how boosting will be interpolated across document scores; defaults to \"Linear\".",
+                                            "enum": [
+                                                "linear",
+                                                "constant",
+                                                "quadratic",
+                                                "logarithmic"
+                                            ],
+                                            "type": "string",
+                                            "x-ms-enum": {
+                                                "name": "ScoringFunctionInterpolation"
+                                            }
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "type",
+                                        "fieldName",
+                                        "boost"
+                                    ],
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "name": {
+                                "description": "The name of the scoring profile.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/Naming-rules"
+                                },
+                                "type": "string"
+                            },
+                            "text": {
+                                "description": "Parameters that boost scoring based on text matches in certain index fields.",
+                                "x-ms-client-name": "TextWeights",
+                                "properties": {
+                                    "weights": {
+                                        "additionalProperties": {
+                                            "format": "double",
+                                            "type": "number",
+                                            "nullable": false
+                                        },
+                                        "description": "The dictionary of per-field weights to boost document scoring. The keys are field names and the values are the weights for each field.",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "weights"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                        "required": [
+                            "name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "suggesters": {
+                    "description": "The suggesters for the index.",
+                    "items": {
+                        "description": "Defines how the Suggest API should apply to a group of fields in the index.",
+                        "properties": {
+                            "name": {
+                                "description": "The name of the suggester.",
+                                "type": "string"
+                            },
+                            "searchMode": {
+                                "description": "A value indicating the capabilities of the suggester.",
+                                "enum": [
+                                    "analyzingInfixMatching"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "modelAsString": false,
+                                    "name": "searchMode"
+                                }
+                            },
+                            "sourceFields": {
+                                "description": "The list of field names to which the suggester applies. Each field must be searchable.",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "searchMode",
+                            "sourceFields"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "tokenFilters": {
+                    "description": "The token filters for the index.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                    },
+                    "items": {
+                        "description": "Abstract base class for token filters.",
+                        "discriminator": {
+                            "propertyName": "@odata.type"
+                        },
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                        },
+                        "properties": {
+                            "@odata.type": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "The name of the token filter. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search#index-attribute-reference"
+                                },
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "@odata.type",
+                            "name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "tokenizers": {
+                    "description": "The tokenizers for the index.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                    },
+                    "items": {
+                        "description": "Abstract base class for tokenizers.",
+                        "discriminator": {
+                            "propertyName": "@odata.type"
+                        },
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                        },
+                        "properties": {
+                            "@odata.type": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "The name of the tokenizer. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters.",
+                                "externalDocs": {
+                                    "url": "https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search#index-attribute-reference"
+                                },
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "@odata.type",
+                            "name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "_odata_etag": {
+                    "description": "The ETag of the index.",
+                    "type": "string",
+                    "x-ms-client-name": "ETag"
+                }
+            },
+            "required": [
+                "name",
+                "fields"
+            ],
+            "type": "object"
+        },
+        "client_request_id": {
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "If_None_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

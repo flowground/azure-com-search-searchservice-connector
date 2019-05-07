@@ -1,0 +1,139 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "A list of cognitive skills.",
+            "externalDocs": {
+                "url": "https://docs.microsoft.com/azure/search/cognitive-search-tutorial-blob"
+            },
+            "properties": {
+                "cognitiveServices": {
+                    "description": "Details about cognitive services to be used when running skills.",
+                    "discriminator": {
+                        "propertyName": "@odata.type"
+                    },
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "_odata_type": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "@odata.type"
+                    ],
+                    "type": "object"
+                },
+                "description": {
+                    "description": "The description of the skillset.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the skillset.",
+                    "type": "string"
+                },
+                "skills": {
+                    "description": "A list of skills in the skillset.",
+                    "items": {
+                        "description": "Abstract base class for skills.",
+                        "discriminator": {
+                            "propertyName": "@odata.type"
+                        },
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/azure/search/cognitive-search-predefined-skills"
+                        },
+                        "properties": {
+                            "@odata.type": {
+                                "type": "string"
+                            },
+                            "context": {
+                                "description": "Represents the level at which operations take place, such as the document root or document content (for example, /document or /document/content).",
+                                "type": "string"
+                            },
+                            "description": {
+                                "description": "The description of the skill which describes the inputs, outputs, and usage of the skill.",
+                                "type": "string"
+                            },
+                            "inputs": {
+                                "description": "Inputs of the skills could be a column in the source data set, or the output of an upstream skill.",
+                                "items": {
+                                    "description": "Input field mapping for a skill.",
+                                    "properties": {
+                                        "name": {
+                                            "description": "The name of the input.",
+                                            "type": "string"
+                                        },
+                                        "source": {
+                                            "description": "The source of the input.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "name",
+                                        "source"
+                                    ],
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "outputs": {
+                                "description": "The output of a skill is either a field in an Azure Search index, or a value that can be consumed as an input by another skill.",
+                                "items": {
+                                    "description": "Output field mapping for a skill.",
+                                    "externalDocs": {
+                                        "url": "https://docs.microsoft.com/rest/api/searchservice/naming-rules"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "description": "The name of the output defined by the skill.",
+                                            "type": "string"
+                                        },
+                                        "targetName": {
+                                            "description": "The target name of the output. It is optional and default to name.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "name"
+                                    ],
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "@odata.type",
+                            "description",
+                            "context",
+                            "inputs",
+                            "outputs"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "_odata_etag": {
+                    "description": "The ETag of the skillset.",
+                    "type": "string",
+                    "x-ms-client-name": "ETag"
+                }
+            },
+            "required": [
+                "name",
+                "description",
+                "skills"
+            ],
+            "type": "object"
+        },
+        "client_request_id": {
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

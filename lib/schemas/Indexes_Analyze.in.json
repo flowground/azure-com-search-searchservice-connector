@@ -1,0 +1,91 @@
+{
+    "type": "object",
+    "properties": {
+        "indexName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Specifies some text and analysis components used to break that text into tokens.",
+            "properties": {
+                "analyzer": {
+                    "description": "The name of the analyzer to use to break the given text. If this parameter is not specified, you must specify a tokenizer instead. The tokenizer and analyzer parameters are mutually exclusive.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Language-support"
+                    },
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-external": true,
+                    "type": "object"
+                },
+                "charFilters": {
+                    "description": "An optional list of character filters to use when breaking the given text. This parameter can only be set when using the tokenizer parameter.",
+                    "items": {
+                        "description": "Defines the names of all character filters supported by Azure Search.",
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                        },
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "x-ms-external": true,
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "text": {
+                    "description": "The text to break into tokens.",
+                    "type": "string"
+                },
+                "tokenFilters": {
+                    "description": "An optional list of token filters to use when breaking the given text. This parameter can only be set when using the tokenizer parameter.",
+                    "items": {
+                        "description": "Defines the names of all token filters supported by Azure Search.",
+                        "externalDocs": {
+                            "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                        },
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "x-ms-external": true,
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "tokenizer": {
+                    "description": "The name of the tokenizer to use to break the given text. If this parameter is not specified, you must specify an analyzer instead. The tokenizer and analyzer parameters are mutually exclusive.",
+                    "externalDocs": {
+                        "url": "https://docs.microsoft.com/rest/api/searchservice/Custom-analyzers-in-Azure-Search"
+                    },
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-external": true,
+                    "type": "object"
+                }
+            },
+            "required": [
+                "text"
+            ],
+            "type": "object"
+        },
+        "client_request_id": {
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
